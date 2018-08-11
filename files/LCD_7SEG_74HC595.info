@@ -1,0 +1,54 @@
+{
+ "name": "LCD_7SEG_74HC595",
+ "type": "module",
+ "description": "7-segment indicator on shift registers 74hc595.",
+ "version": "0.0.1",
+ "homepage": "",
+ "files": ["LCD_7SEG_74HC595.init", "LCD_7SEG_74HC595.info", "LCD_7SEG_74HC595.lua", "LCD_7SEG_74HC595.run", "LCD_7SEG_74HC595.html"],
+ "page": "LCD_7SEG_74HC595.html",
+ "img": "https://raw.githubusercontent.com/bondrogeen/LCD_7SEG_74HC595/master/doc/logo.jpg",
+ "repository": {
+  "type": "git",
+  "url": "https://github.com/bondrogeen/LCD_7SEG_74HC595"
+ },
+ "author": {
+  "name": "bondrogeen",
+  "email": "bondrogeen@gmail.com"
+ },
+ "native": [
+  {
+   "id": "run",
+   "val": false,
+   "type": "checkbox",   
+   "name": "Run"
+  }, {
+   "id": "latch",
+   "val": 6,
+   "type": "select",
+   "values": [0,1,2,3,4,6,9,10],
+   "name": "Pin latch"
+  }, {
+   "id": "type",
+   "val": "One",
+   "type": "select",
+   "values": ["anode", "cathode"],
+   "name": "Type of indicators"
+  }, {
+   "id": "qty",
+   "val": 1,
+   "type": "number",
+   "min": 1,
+   "max": 100,
+   "name": "Qty. indicators"
+  }, {
+   "id": "speed",
+   "val": 500,
+   "type": "number",
+   "min": 50,
+   "max": 10000,
+   "name": "Speed"
+  }
+ ],
+ "license": "MIT",
+ "modules": ["spi"]
+}

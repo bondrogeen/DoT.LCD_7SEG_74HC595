@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="utf-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+ <title>Template</title>
+ <link rel="stylesheet" href="style.css.gz" />
+ <style>
+
+
+ </style>
+</head>
+
+<body>
+ <div id="loader" class="loader hide"></div>
+ <div id="sideNav" class="sidenav">
+  <span href="javascript:void(0)" class="close" onclick="document.getElementById('sideNav').classList.toggle('open');">&times;</span>
+  <div class="in"></div>
+  <a href="http://dot.codedevice.ru/example/" target="_blank">Example css</a>
+  <a href="https://github.com/bondrogeen/dot" target="_blank">GitHub</a>
+  <a href="http://dot.codedevice.ru" target="_blank">DOT</a>
+ </div>
+ <div class="sideopen warning"><a onclick="document.getElementById('sideNav').classList.toggle('open');">&equiv;</a></div>
+ <ul class="nav fix warning" id="topNav">
+  <li><a href="#" class="brand">DOT</a></li>
+  <li><a href="settings.html">Settings</a></li>
+  <li><a href="service.html">Service</a></li>
+  <li class="-exit"><a href="#" id="btn_exit" onclick="logout()">Exit</a></li>
+  <li class="-icon"><a href="#" onclick="document.getElementById('topNav').classList.toggle('res');">&equiv;</a></li>
+ </ul>
+ <div id="Modal" class="modal hide">
+  <div class="m-cont">
+   <span class="close" id="close_m">&times;</span>
+   <div class="m-body">
+    <p>Save settings?</p>
+   </div>
+   <div class="m-foo">
+    <button id="save_m" class="success">Yes</button>
+    <button id="close" class="danger">No</button>
+   </div>
+  </div>
+ </div>
+ <div class="cont">
+  <div class="row">
+   <div class="s12 m2 l2">
+
+   </div>
+   <div class="s12 m10 l9 ">
+    <h1>Main</h1>
+    <div class="row">
+     <div class="s12">
+      <div class="group">
+       <input id="input_text" type="text" name="text" required=" " value="">
+       <label for="text">Number</label>
+      </div>
+      <div class="group right">
+       <button id="set" onclick="setLCD(false);">Send</button>
+       <button id="step" onclick="setLCD(true);">Send with shift</button>
+      </div>
+     </div>
+    </div>
+    <div class="row">
+     <div class="s12">
+     <h3>Example http request</h3>
+     <p id="info" ></p>
+     <p id="infostep" ></p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+ <script>
+  function logout() {
+   document.cookie = "id=";
+   location.href = '/login.html';
+  }
+
+  function send(page, data, callback) {
+   var req = new XMLHttpRequest();
+   req.open("POST", page, true);
+   req.setRequestHeader('Content-Type', 'application/json');
+   req.addEventListener("load", function() {
+    if (req.status < 400) {
+     callback(req.responseText);
+    } else {
+     callback(false);
+    }
+   });
+   req.send(JSON.stringify(data));
+  }
+
+  function setLCD(d) {
+   var line = document.getElementById("input_text").value;
+   var data={};
+   if (d){
+    data.step=line;
+   }else{
+    data.set=line;
+   }
+   send("LCD_7SEG_74HC595.lua", data, function(res) {
+    console.log(res);
+    if (res) {
+     if (res === "false") {
+
+     }
+    }
+   })
+  }
+
+  document.getElementById("info").innerHTML="<a target='_blank' href='http://"+window.location.hostname+"/LCD_7SEG_74HC595.lua?set=123' >http://"+window.location.hostname+"/LCD_7SEG_74HC595.lua?set=123</a>"
+
+  document.getElementById("infostep").innerHTML="<a target='_blank' href='http://"+window.location.hostname+"/LCD_7SEG_74HC595.lua?step=0123456789_-dt&speed=200' >http://"+window.location.hostname+"/LCD_7SEG_74HC595.lua?step=0123456789_-dt&speed=200</a>"
+
+
+ </script>
+</body>
+
+</html>

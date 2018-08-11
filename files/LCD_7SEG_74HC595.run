@@ -1,0 +1,9 @@
+return function (t)
+local r
+ if t.run then 
+  r=dofile("LCD_7SEG_74HC595.lua")({init=t})
+ else
+  print("Plugin not started")
+ end
+ return r
+end
