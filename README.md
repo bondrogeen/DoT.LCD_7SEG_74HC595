@@ -33,7 +33,7 @@ end)
 ![schematic](https://raw.githubusercontent.com/bondrogeen/LCD_7SEG_74HC595/master/doc/schematic.jpg)
 
 
-[GitHub](http://github.com)
+[schematic PDF](https://github.com/bondrogeen/LCD_7SEG_74HC595/raw/master/doc/schematic.PDF)
 
 ## Changelog
 
